@@ -156,8 +156,12 @@ public class MainController {
         alert.showAndWait();
     }
 
-    void setScoreValue(int score) {
+    public void setScoreValue(int score) {
         scoreNumber.setText(Integer.toString(score));
+    }
+
+    int getScoreValue() {
+        return Integer.parseInt(scoreNumber.getText());
     }
 
     int getFpsCount() {

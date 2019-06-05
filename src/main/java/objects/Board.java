@@ -1,5 +1,6 @@
 package objects;
 
+import controllers.MainController;
 import javafx.scene.layout.*;
 
 import java.util.ArrayList;
@@ -21,9 +22,11 @@ public class Board extends Pane {
     private ArrayList<Segment> segments = new ArrayList<>();
 
     // score
-    public int score = 0;
+    private int score = 0;
 
-    public Board(int boardWidth, int boardHeight, int blockSize) {
+    private MainController mainController;
+
+    public Board(int boardWidth, int boardHeight, int blockSize, MainController mainController) {
         // set board properties
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
@@ -33,6 +36,8 @@ public class Board extends Pane {
         setBackground(new Background(new BackgroundFill(BOARD_COLOR, null, null)));
         setBorder(new Border(new BorderStroke((BOARD_BORDER_COLOR), BorderStrokeStyle.SOLID, null,
                 new BorderWidths(BOARD_BORDER_SIZE))));
+
+        this.mainController = mainController;
 
         // add food to board
         addFood();
@@ -46,6 +51,7 @@ public class Board extends Pane {
 
         if (isEaten(food)) {
             score += 10;
+            mainController.setScoreValue(score);
             addFood();
             addNewBlock();
         }
@@ -136,5 +142,18 @@ public class Board extends Pane {
 
     public void setSnake(Snake snake) {
         this.snake = snake;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void resetScore() {
+        score = 0;
+        mainController.setScoreValue(0);
     }
 }

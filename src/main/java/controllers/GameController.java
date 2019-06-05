@@ -46,7 +46,7 @@ public class GameController implements Initializable {
             int fpsCount = mainController.getFpsCount();
             String headColor = mainController.getHeadColor();
             int blockSize = SCREEN_SIZE/boardSize;
-            board = new Board(boardSize, boardSize, blockSize);
+            board = new Board(boardSize, boardSize, blockSize, mainController);
 
             gridPane.requestFocus();
             board.addSnake(new Snake(initLength, board, headColor));
@@ -58,7 +58,6 @@ public class GameController implements Initializable {
                     if (now - then > 1000000000 / fpsCount) { // update 4 times / second
                         board.update();
                         then = now;
-                        mainController.setScoreValue(board.score);
 
                         changed = false;
                         if(hasNextUpdate) {
@@ -89,19 +88,22 @@ public class GameController implements Initializable {
                             stop();
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setHeaderText("Game over");
-                            alert.setContentText("Your score is: " + board.score);
+                            alert.setContentText("Your score is: " + board.getScore());
                             Platform.runLater(alert::showAndWait);
 
                             // start a new game
                             alert.setOnHidden(e -> {
                                 gridPane.getChildren().clear();
-                                board = new Board(boardSize, boardSize, blockSize);
+                                board = new Board(boardSize, boardSize, blockSize, mainController);
                                 board.addSnake(new Snake(initLength, board, headColor));
+                                board.resetScore();
                                 mainController.setScoreValue(0);
                                 gridPane.getChildren().add(board);
                                 start();
                             });
                         }
+
+                        //mainController.setScoreValue(board.getScore());
                     }
                 }
             };
