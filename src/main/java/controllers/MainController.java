@@ -1,5 +1,9 @@
 package controllers;
 
+import helpers.Record;
+import helpers.ScoreBoard;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -12,6 +16,8 @@ import java.io.IOException;
 public class MainController {
 
     private GameController gameController;
+
+    private ScoreBoard board;
 
     private int fpsCount;
     private int boardSize;
@@ -35,6 +41,12 @@ public class MainController {
 
     @FXML
     private TextField boardSizeField;
+
+    @FXML
+    private TextField nickField;
+
+    @FXML
+    private ListView scoreBoard;
 
     @FXML
     private CheckBox wallsOnCheckbox;
@@ -70,6 +82,9 @@ public class MainController {
 
         // default walls are off
         wallsOnCheckbox.setSelected(false);
+
+        // create new score board
+        board = new ScoreBoard();
     }
 
     @FXML
@@ -162,6 +177,17 @@ public class MainController {
         alert.setHeaderText("Warning message");
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void updateScoreBoard(int score) {
+        String nick = nickField.getText();
+        if(nick.equals(""))
+            nick = "NoName";
+        Record newRecord = new Record(nick, score);
+        board.addRecord(newRecord);
+
+        // update board view
+        scoreBoard.setItems(board.getAllRecords());
     }
 
     public void setScoreValue(int score) {

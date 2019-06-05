@@ -52,6 +52,7 @@ public class Segment extends Rectangle {
         else {
             movementBehaviour = new StandardMovement();
         }
+
     }
 
     void update() {

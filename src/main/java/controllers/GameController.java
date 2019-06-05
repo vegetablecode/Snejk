@@ -89,6 +89,7 @@ public class GameController implements Initializable {
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setHeaderText("Game over");
                             alert.setContentText("Your score is: " + board.getScore());
+                            mainController.updateScoreBoard(board.getScore());
                             Platform.runLater(alert::showAndWait);
 
                             // start a new game
