@@ -2,6 +2,10 @@ package objects;
 
 
 import javafx.scene.shape.Rectangle;
+import logic.IMovementBehaviour;
+import logic.IGameOverImpl.NoWallsGameOver;
+import logic.IMovementImpl.StandardMovement;
+import logic.IMovementImpl.TeleportMovement;
 
 public class Segment extends Rectangle {
 
@@ -23,6 +27,9 @@ public class Segment extends Rectangle {
 
     private int maxX, maxY;
 
+    // movement behaviour
+    private IMovementBehaviour movementBehaviour;
+
     Segment(int x, int y, Segment segment, Board board) {
         super(board.getBlockSize(), board.getBlockSize());
         positionX = x;
@@ -37,6 +44,14 @@ public class Segment extends Rectangle {
 
         maxX = board.getBoardWidth();
         maxY = board.getBoardHeight();
+
+        // set the right movement
+        if(board.getGameOverBehaviour() instanceof NoWallsGameOver) {
+            movementBehaviour = new TeleportMovement();
+        }
+        else {
+            movementBehaviour = new StandardMovement();
+        }
     }
 
     void update() {
@@ -70,39 +85,29 @@ public class Segment extends Rectangle {
     }
 
     private void moveUp() {
-        positionY--;
-        if (positionY < 0) {
-            positionY = maxY - 1;
-        }
+        positionY = movementBehaviour.moveUp(positionY, maxY);
     }
 
     private void moveDown() {
-        positionY++;
-        if (positionY >= maxY) {
-            positionY = 0;
-        }
+        positionY = movementBehaviour.moveDown(positionY, maxY);
     }
 
     private void moveLeft() {
-        positionX--;
-        if (positionX < 0) {
-            positionX = maxX - 1;
-        }
+        positionX  = movementBehaviour.moveLeft(positionX, maxX);
     }
 
     private void moveRight() {
-        positionX++;
-        if (positionX >= maxX) {
-            positionX = 0;
-        }
+        positionX  = movementBehaviour.moveRight(positionX, maxX);
     }
 
     private void updatePosition() {
-        setTranslateX(positionX * blockSize);
-        setTranslateY(positionY * blockSize);
+        if((positionY < maxY) && (positionX < maxX) && (positionY >= 0) && (positionX >= 0)) {
+            setTranslateX(positionX * blockSize);
+            setTranslateY(positionY * blockSize);
+        }
     }
 
-    int getPositionX() {
+    public int getPositionX() {
         return positionX;
     }
 
@@ -112,7 +117,7 @@ public class Segment extends Rectangle {
     }
 
 
-    int getPositionY() {
+    public int getPositionY() {
         return positionY;
     }
 
@@ -121,4 +126,11 @@ public class Segment extends Rectangle {
         return prevPositionY;
     }
 
+    public int getMaxX() {
+        return maxX;
+    }
+
+    public int getMaxY() {
+        return maxY;
+    }
 }

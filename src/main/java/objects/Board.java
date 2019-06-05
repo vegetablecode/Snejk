@@ -2,6 +2,9 @@ package objects;
 
 import controllers.MainController;
 import javafx.scene.layout.*;
+import logic.IGameOverBehaviour;
+import logic.IGameOverImpl.NoWallsGameOver;
+import logic.IGameOverImpl.WallsGameOver;
 
 import java.util.ArrayList;
 
@@ -24,7 +27,11 @@ public class Board extends Pane {
     // score
     private int score = 0;
 
+    // controller
     private MainController mainController;
+
+    // game over behaviour
+    private IGameOverBehaviour gameOverBehaviour;
 
     public Board(int boardWidth, int boardHeight, int blockSize, MainController mainController) {
         // set board properties
@@ -41,6 +48,13 @@ public class Board extends Pane {
 
         // add food to board
         addFood();
+
+        // set game over
+        if(mainController.areWallsOn()) {
+            gameOverBehaviour = new WallsGameOver();
+        } else {
+            gameOverBehaviour = new NoWallsGameOver();
+        }
     }
 
     // updates every block in the field
@@ -74,14 +88,7 @@ public class Board extends Pane {
     }
 
     public boolean isGameOver() {
-        for (Segment segment : segments) {
-            if (segment != snake.getHead()) {
-                if (segment.getPositionX() == snake.getHead().getPositionX() && segment.getPositionY() == snake.getHead().getPositionY()) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return gameOverBehaviour.isGameOver(segments, snake);
     }
 
     private Food createNewFood() {
@@ -155,5 +162,13 @@ public class Board extends Pane {
     public void resetScore() {
         score = 0;
         mainController.setScoreValue(0);
+    }
+
+    public void setGameOverBehaviour(IGameOverBehaviour gameOverBehaviour) {
+        this.gameOverBehaviour = gameOverBehaviour;
+    }
+
+    IGameOverBehaviour getGameOverBehaviour() {
+        return gameOverBehaviour;
     }
 }

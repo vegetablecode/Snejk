@@ -26,7 +26,7 @@
       <ColorPicker fx:id="colorPicker" layoutX="614.0" layoutY="185.0" onAction="#headColorPicked" />
       <Label layoutX="614.0" layoutY="162.0" prefHeight="17.0" prefWidth="139.0" text="Snejk's Head Color" />
       <CheckBox fx:id="wallsOnCheckbox" layoutX="612.0" layoutY="109.0" mnemonicParsing="false" />
-      <Label layoutX="642.0" layoutY="111.0" prefHeight="17.0" prefWidth="128.0" text="transparent walls" />
+      <Label layoutX="642.0" layoutY="111.0" prefHeight="17.0" prefWidth="128.0" text="walls on" />
       <TextField fx:id="fpsCountField" layoutX="702.0" layoutY="40.0" prefHeight="27.0" prefWidth="58.0" />
       <Label layoutX="613.0" layoutY="45.0" prefHeight="17.0" prefWidth="79.0" text="FPS count" />
       <Separator layoutX="610.0" layoutY="142.0" prefHeight="1.0" prefWidth="166.0" />

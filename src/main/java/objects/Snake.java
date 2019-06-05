@@ -27,6 +27,7 @@ public class Snake {
             segments.add(segment);
             tail = segment;
         }
+
     }
 
     public void setDirection(int direction) {
@@ -42,7 +43,7 @@ public class Snake {
     }
 
 
-    Segment getHead() {
+    public Segment getHead() {
         return head;
     }
 

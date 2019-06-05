@@ -67,6 +67,9 @@ public class MainController {
 
         // set default head color
         headColor = "DE7440";
+
+        // default walls are off
+        wallsOnCheckbox.setSelected(false);
     }
 
     @FXML
@@ -128,8 +131,8 @@ public class MainController {
                 return false;
             }
 
-            if ((boardSize < 5) || (boardSize > 100)) {
-                showMessage("Board Size should be between 5 and 100!");
+            if ((boardSize < 10) || (boardSize > 110)) {
+                showMessage("Board Size should be between 10 and 110!");
                 return false;
             }
 
@@ -139,6 +142,9 @@ public class MainController {
             }
             boardSizeField.setText(Integer.toString(boardSize));
         }
+
+        // turn on / off walls
+        wallsOn = wallsOnCheckbox.isSelected();
 
         return true;
     }
@@ -176,7 +182,7 @@ public class MainController {
         return headColor;
     }
 
-    public boolean isWallsOn() {
+    public boolean areWallsOn() {
         return wallsOn;
     }
 }
