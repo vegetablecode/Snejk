@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+   <children>
+      <Label fx:id="welcomeLabel" layoutX="116.0" layoutY="69.0" prefHeight="150.0" prefWidth="396.0" />
+      <GridPane fx:id="gamePane" layoutX="24.0" layoutY="25.0" prefHeight="550.0" prefWidth="550.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <Button layoutX="641.0" layoutY="257.0" mnemonicParsing="false" onAction="#startGame" prefHeight="27.0" prefWidth="101.0" text="New Game" />
+      <ColorPicker fx:id="colorPicker" layoutX="614.0" layoutY="185.0" onAction="#headColorPicked" />
+      <Label layoutX="614.0" layoutY="162.0" prefHeight="17.0" prefWidth="139.0" text="Snejk's Head Color" />
+      <CheckBox fx:id="wallsOnCheckbox" layoutX="612.0" layoutY="109.0" mnemonicParsing="false" />
+      <Label layoutX="642.0" layoutY="111.0" prefHeight="17.0" prefWidth="128.0" text="transparent walls" />
+      <TextField fx:id="fpsCountField" layoutX="702.0" layoutY="40.0" prefHeight="27.0" prefWidth="58.0" />
+      <Label layoutX="613.0" layoutY="45.0" prefHeight="17.0" prefWidth="79.0" text="FPS count" />
+      <Separator layoutX="610.0" layoutY="142.0" prefHeight="1.0" prefWidth="166.0" />
+      <TextField fx:id="boardSizeField" layoutX="702.0" layoutY="74.0" prefHeight="27.0" prefWidth="58.0" />
+      <Label layoutX="614.0" layoutY="79.0" prefHeight="17.0" prefWidth="79.0" text="Board size" />
+      <Separator layoutX="610.0" layoutY="236.0" prefHeight="1.0" prefWidth="166.0" />
+      <Label layoutX="605.0" layoutY="534.0" prefHeight="48.0" prefWidth="49.0" text="Score: " />
+      <Label fx:id="scoreNumber" layoutX="660.0" layoutY="534.0" prefHeight="48.0" prefWidth="49.0" text="0" />
+      <Button layoutX="643.0" layoutY="300.0" mnemonicParsing="false" onAction="#pauseGame" prefHeight="27.0" prefWidth="101.0" text="Pause" />
+   </children>
+</Pane>

@@ -1,3 +1,4 @@
+
 package app;
 
 import javafx.application.Application;
@@ -14,12 +15,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/MainWindow.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/MainScreen.fxml"));
         Pane pane = loader.load();
 
         Scene scene = new Scene(pane, 800, 600);
 
         primaryStage.setResizable(false);
+        scene.getStylesheets().add("/styles/dark.css");
         primaryStage.setScene(scene);
         primaryStage.setTitle("Snejk");
         primaryStage.show();
