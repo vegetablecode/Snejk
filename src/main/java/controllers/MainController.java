@@ -84,6 +84,8 @@ public class MainController {
                 e.printStackTrace();
             }
 
+            setScoreValue(0);
+
             gameController = loader.getController();
             gameController.setMainController(this);
 

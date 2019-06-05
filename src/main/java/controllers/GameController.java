@@ -94,16 +94,10 @@ public class GameController implements Initializable {
                             // start a new game
                             alert.setOnHidden(e -> {
                                 gridPane.getChildren().clear();
-                                board = new Board(boardSize, boardSize, blockSize, mainController);
-                                board.addSnake(new Snake(initLength, board, headColor));
                                 board.resetScore();
                                 mainController.setScoreValue(0);
-                                gridPane.getChildren().add(board);
-                                start();
                             });
                         }
-
-                        //mainController.setScoreValue(board.getScore());
                     }
                 }
             };

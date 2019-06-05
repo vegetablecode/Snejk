@@ -164,10 +164,6 @@ public class Board extends Pane {
         mainController.setScoreValue(0);
     }
 
-    public void setGameOverBehaviour(IGameOverBehaviour gameOverBehaviour) {
-        this.gameOverBehaviour = gameOverBehaviour;
-    }
-
     IGameOverBehaviour getGameOverBehaviour() {
         return gameOverBehaviour;
     }
