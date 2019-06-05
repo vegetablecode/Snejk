@@ -102,35 +102,23 @@ public class Segment extends Rectangle {
         setTranslateY(positionY * blockSize);
     }
 
-    public int getPositionX() {
+    int getPositionX() {
         return positionX;
     }
 
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
-    }
 
-    public int getPrevPositionX() {
+    int getPrevPositionX() {
         return prevPositionX;
     }
 
-    public void setPrevPositionX(int prevPositionX) {
-        this.prevPositionX = prevPositionX;
-    }
 
-    public int getPositionY() {
+    int getPositionY() {
         return positionY;
     }
 
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
-    }
 
-    public int getPrevPositionY() {
+    int getPrevPositionY() {
         return prevPositionY;
     }
 
-    public void setPrevPositionY(int prevPositionY) {
-        this.prevPositionY = prevPositionY;
-    }
 }

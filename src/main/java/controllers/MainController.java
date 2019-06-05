@@ -1,6 +1,5 @@
 package controllers;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -8,7 +7,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
-import java.beans.EventHandler;
 import java.io.IOException;
 
 public class MainController {
@@ -150,7 +148,7 @@ public class MainController {
         gamePane.add(pane, 0, 0);
     }
 
-    public void showMessage(String message) {
+    private void showMessage(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning Message");
         alert.setHeaderText("Warning message");
@@ -158,19 +156,19 @@ public class MainController {
         alert.showAndWait();
     }
 
-    public void setScoreValue(int score) {
+    void setScoreValue(int score) {
         scoreNumber.setText(Integer.toString(score));
     }
 
-    public int getFpsCount() {
+    int getFpsCount() {
         return fpsCount;
     }
 
-    public int getBoardSize() {
+    int getBoardSize() {
         return boardSize;
     }
 
-    public String getHeadColor() {
+    String getHeadColor() {
         return headColor;
     }
 

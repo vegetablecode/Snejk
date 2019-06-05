@@ -29,7 +29,12 @@ public class GameController implements Initializable {
     @FXML
     private GridPane gridPane;
 
-    public void setMainController(MainController mainController) {
+    @FXML
+    public void onFocus() {
+        gridPane.requestFocus();
+    }
+
+    void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 

@@ -1,7 +1,6 @@
 package objects;
 
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
@@ -32,7 +31,8 @@ public class Board extends Pane {
 
         setMinSize(boardWidth * blockSize, boardHeight * blockSize);
         setBackground(new Background(new BackgroundFill(BOARD_COLOR, null, null)));
-        setBorder(new Border(new BorderStroke((BOARD_BORDER_COLOR), BorderStrokeStyle.SOLID, null, new BorderWidths(BOARD_BORDER_SIZE))));
+        setBorder(new Border(new BorderStroke((BOARD_BORDER_COLOR), BorderStrokeStyle.SOLID, null,
+                new BorderWidths(BOARD_BORDER_SIZE))));
 
         // add food to board
         addFood();
@@ -58,14 +58,11 @@ public class Board extends Pane {
     }
 
     private void addFood() {
-        int randomX = (int) (Math.random() * boardWidth);
-        int randomY = (int) (Math.random() * boardHeight);
-
         // remove old food from the board
         getChildren().remove(food);
 
         // add new food to the board
-        Food food = new Food(randomX, randomY, blockSize);
+        Food food = createNewFood();
         getChildren().add(food);
         this.food = food;
     }
@@ -79,6 +76,27 @@ public class Board extends Pane {
             }
         }
         return false;
+    }
+
+    private Food createNewFood() {
+        int randomX = (int) (Math.random() * boardWidth);
+        int randomY = (int) (Math.random() * boardHeight);
+
+        boolean foodIsNotOnSnake = false;
+
+        Food food = new Food(randomX, randomY, blockSize);
+
+        // check if food doesn't lie on snake
+        while (!foodIsNotOnSnake) {
+            for (Segment segment : segments) {
+                if ((segment.getPositionX() == food.getPosX()) && (segment.getPositionY() == food.getPosY())) {
+                    food = new Food(randomX, randomY, blockSize);
+                    break;
+                }
+            }
+            foodIsNotOnSnake = true;
+        }
+        return food;
     }
 
     public void addSnake(Snake snake) {
